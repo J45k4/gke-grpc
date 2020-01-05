@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: chatting
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: chatting
+    spec:
+      containers:
+        - name: chatting
+          image: jaska/chatting:4
+          ports:
+            - containerPort: 4200
+        - name: grpc-proxy
+          image: jaska/grpc-proxy:1
+          env:
+            - name: GRPC_PATH
+              value: "/Chatting.ChattingService/"
+            - name: TARGET_HOST
+              value: "localhost:4200"
+          ports:
+            - containerPort: 9900

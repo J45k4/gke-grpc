@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package Chatting;
+
+message SentMessage {
+    string channelId = 1;
+    string text = 2;
+}
+
+message ReceivedMessage {
+    string text = 1;
+}
+
+service ChattingService {
+    rpc createChatConnection(stream SentMessage) returns(stream ReceivedMessage) {}
+}

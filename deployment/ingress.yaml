@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: chatting-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: public-ip
+spec:
+  tls:
+    - secretName: tls-secret
+  rules:
+    - host: "chatting.koodinikkarit.com"
+      http:
+        paths:
+          - backend:
+              serviceName: chatting-service
+              servicePort: 443
+            path: /
+          - backend:
+              serviceName: chatting-service
+              servicePort: 443
+            path: /Chatting.ChattingService/*

@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Service
+apiVersion: v1
+metadata:
+  annotations:
+    cloud.google.com/app-protocols: '{"my-port":"HTTP2"}'
+  name: chatting-service
+spec:
+  type: NodePort
+  selector:
+    app: chatting
+  ports:
+    - name: my-port 
+      protocol: TCP
+      port: 443
+      targetPort: 9900
