@@ -14,8 +14,4 @@ spec:
           - backend:
               serviceName: chatting-service
               servicePort: 443
-            path: /
-          - backend:
-              serviceName: chatting-service
-              servicePort: 443
             path: /Chatting.ChattingService/*
